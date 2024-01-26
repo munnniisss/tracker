@@ -1,24 +1,28 @@
 <script setup>
 
-import { generateTimelineItems } from "../../functions.js";
+import TimelineItem from '../TimelineItem.vue';
+import { validateTimelineItems } from '../../validators.js';
 
-const timelineItems = generateTimelineItems()
+
+const props = defineProps({
+    timelineItems: {
+        type: Array,
+        required: true,
+        validator: validateTimelineItems
+    }
+})
+
 
 </script>
 
 <template>
     <div class="mt-7">
         <ul>
-            <li
-                v-for="{ hour } in timelineItems"
-                :key="hour"
-                class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4">
-                <a href="#"
-                   class="rounded bg-gray-100 px-2 font-mono text-lg
-                   text-gray-500 absolute -top-4 left-1/2 -translate-x-1/2">
-                    {{ hour }}:00
-                </a>
-            </li>
+            <TimelineItem
+                v-for="timelineItem in timelineItems"
+                :key="timelineItem.hour"
+                :timeline-item="timelineItem"
+            />
         </ul>
     </div>
 </template>

@@ -1,27 +1,22 @@
-import {
-    HOURS_IN_DAY,
-    PAGE_ACTIVITIES,
-    PAGE_PROGRESS,
-    PAGE_TIMELINE
-} from "./constants.js";
+import { HOURS_IN_DAY, MIDNIGHT_HOUR, PAGE_TIMELINE } from './constants.js';
+import { isPageValid } from './validators.js';
 
 export function normalizePageHash() {
-    const hash = window.location.hash.slice(1)
+    const page = window.location.hash.slice(1);
 
-    if ([PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS].includes(hash)) {
-        return hash
+    if (isPageValid(page)) {
+        return page;
     }
 
-    window.location.hash = PAGE_TIMELINE
-
-    return PAGE_TIMELINE
+    window.location.hash = PAGE_TIMELINE;
+    return PAGE_TIMELINE;
 }
 
 
 export function generateTimelineItems() {
-    const timelineItems = []
-    for (let hour = 0; hour < HOURS_IN_DAY; hour++) {
-        timelineItems.push({ hour })
+    const timelineItems = [];
+    for (let hour = MIDNIGHT_HOUR; hour < HOURS_IN_DAY; hour++) {
+        timelineItems.push({ hour });
     }
-    return timelineItems
+    return timelineItems;
 }
