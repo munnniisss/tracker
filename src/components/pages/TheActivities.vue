@@ -7,7 +7,7 @@ defineProps({
     activities: {
         required: true,
         type: Array,
-        validatod: ValidateActivities
+        validator: ValidateActivities
     }
 })
 
