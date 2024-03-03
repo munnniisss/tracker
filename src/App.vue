@@ -7,7 +7,7 @@ import TheActivities from './components/pages/TheActivities.vue';
 import TheProgress from './components/pages/TheProgress.vue';
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants.js';
 import { ref } from 'vue';
-import { generateTimelineItems, normalizePageHash } from './functions.js';
+import { generateTimelineItems, normalizePageHash, generateActivitySelectOptions } from './functions.js';
 
 
 const currentPage = ref(normalizePageHash());
@@ -20,6 +20,8 @@ function goTo(page) {
     currentPage.value = page;
 }
 
+const activitySelectOptions = generateActivitySelectOptions(activities)
+
 
 </script>
 
@@ -30,6 +32,7 @@ function goTo(page) {
         <TheTimeline
             v-show="currentPage === PAGE_TIMELINE"
             :timeline-items="timelineItems"
+            :activity-select-options="activitySelectOptions"
         />
         <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
         <TheProgress v-show="currentPage === PAGE_PROGRESS" />
