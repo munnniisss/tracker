@@ -42,7 +42,7 @@ export function isActivityValid(value) {
 }
 
 export function ValidateActivities(value) {
-    return value.every(isActivityValid)
+    return value.every(isActivityValid);
 }
 
 export function isButtonTypeValid(value) {
@@ -65,7 +65,7 @@ function isNull(value) {
     return value === null;
 }
 
-function isUndefined(value) {
+export function isUndefined(value) {
     return value === undefined;
 }
 
