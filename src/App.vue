@@ -26,6 +26,10 @@ function deleteActivity(activity) {
     activities.value.splice(activities.value.indexOf(activity), 1);
 }
 
+function createActivity(activity) {
+    activities.value.push(activity)
+}
+
 
 </script>
 
@@ -38,8 +42,12 @@ function deleteActivity(activity) {
             :timeline-items="timelineItems"
             :activity-select-options="activitySelectOptions"
         />
-        <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities"
-                       @delete-activity="deleteActivity" />
+        <TheActivities
+            v-show="currentPage === PAGE_ACTIVITIES"
+            :activities="activities"
+            @delete-activity="deleteActivity"
+            @create-activity="createActivity"
+        />
         <TheProgress v-show="currentPage === PAGE_PROGRESS" />
     </main>
 
