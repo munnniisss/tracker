@@ -14,7 +14,7 @@ const props = defineProps({
         required: true,
         type: Array,
         validator: validateSelectOptions
-    }
+    },
 })
 
 
