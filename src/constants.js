@@ -25,15 +25,15 @@ export const MIDNIGHT_HOUR = 0
 
 export const PERIOD_SELECT_OPTIONS = [
     {
-        value: 15,
+        value: 15 * 60,
         label: '0:15'
     },
     {
-        value: 30,
+        value: 30 * 60,
         label: '0:30'
     },
     {
-        value: 45,
+        value: 45 * 60,
         label: '0:45'
     }
 ];

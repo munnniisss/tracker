@@ -67,7 +67,7 @@ function isString(value) {
     return typeof value === 'string';
 }
 
-function isNull(value) {
+export function isNull(value) {
     return value === null;
 }
 
@@ -77,4 +77,8 @@ export function isUndefined(value) {
 
 function isBetween(value, start, end) {
     return value >= start && value <= end;
+}
+
+export function isSelectValueValid(value) {
+    return isNotEmptyString(value) || isNumberOrNull(value)
 }
