@@ -4,6 +4,7 @@ import ActivityItem from './ActivityItem.vue';
 import { isActivityValid, ValidateActivities } from '../../validators.js';
 
 import TheActivityForm from '../TheActivityForm.vue';
+import TheActivitiesEmptyState from './TheActivitiesEmptyState.vue';
 
 const props = defineProps({
     activities: {
@@ -22,15 +23,12 @@ const emit = defineEmits({
 </script>
 
 <template>
-    <div>
-        <ul class="divide-y">
+    <div class="flex flex-col grow">
+        <ul v-if="activities.length > 0" class="divide-y grow">
             <ActivityItem v-for="activity in activities" :key="activity" :activity="activity"
                           @delete="emit('deleteActivity', activity)" />
         </ul>
-        <TheActivityForm @submit="emit('createActivity', $event)"/>
+        <TheActivitiesEmptyState v-else />
+        <TheActivityForm @submit="emit('createActivity', $event)" />
     </div>
 </template>
-
-<style scoped>
-
-</style>
