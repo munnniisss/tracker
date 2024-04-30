@@ -14,7 +14,7 @@ function submit() {
         secondsToComplete: 0
     });
 
-    activity.value = '';
+    name.value = '';
 
     nextTick(() => {
         window.scroll(0, document.body.scrollHeight);
