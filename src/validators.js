@@ -1,24 +1,26 @@
-import { BUTTON_TYPES, HOURS_IN_DAY, MIDNIGHT_HOUR, NAV_ITEMS } from './constants.js';
+import {
+    BUTTON_TYPES,
+    HOURS_IN_DAY,
+    MIDNIGHT_HOUR,
+    NAV_ITEMS
+} from './constants.js';
 
 export function isPageValid(page) {
     return Object.keys(NAV_ITEMS).includes(page);
-
 }
 
 export function isTimelineItemValid({ hour }) {
     return isHourValid(hour);
-
 }
 
 export function validateSelectOptions(options) {
-    return options.every(
-        isSelectOptionValid
-    );
+    return options.every(isSelectOptionValid);
 }
 
-
 function isSelectOptionValid({ value, label }) {
-    return isNumber(value) && isNotEmptyString(label);
+    return (
+        (isNotEmptyString(value) || isNumber(value)) && isNotEmptyString(label)
+    );
 }
 
 export function validateTimelineItems(timelineItems) {
@@ -37,8 +39,12 @@ export function isHourValid(value) {
     return isNumber(value) && isBetween(value, MIDNIGHT_HOUR, HOURS_IN_DAY - 1);
 }
 
-export function isActivityValid(value) {
-    return isNotEmptyString(value);
+export function isActivityValid({ id, name, secondsToComplete }) {
+    return [
+        isNotEmptyString(id),
+        isNotEmptyString(name),
+        isNumber(secondsToComplete)
+    ].every(Boolean);
 }
 
 export function ValidateActivities(value) {

@@ -8,7 +8,7 @@ import { isActivityValid, isUndefined } from '../../validators.js';
 
 const props = defineProps({
     activity: {
-        type: String,
+        type: Object,
         required: true,
         validator: isActivityValid
     }
