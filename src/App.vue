@@ -1,5 +1,4 @@
 <script setup>
-
 import TheHeader from './components/TheHeader.vue';
 import TheNav from './components/TheNav.vue';
 import TheTimeline from './components/pages/TheTimeline.vue';
@@ -7,14 +6,19 @@ import TheActivities from './components/pages/TheActivities.vue';
 import TheProgress from './components/pages/TheProgress.vue';
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants.js';
 import { ref } from 'vue';
-import { generateTimelineItems, normalizePageHash, generateActivitySelectOptions } from './functions.js';
-
+import {
+    generateTimelineItems,
+    normalizePageHash,
+    generateActivitySelectOptions,
+    generateActivities,
+    id
+} from './functions.js';
 
 const currentPage = ref(normalizePageHash());
 
 const timelineItems = generateTimelineItems();
 
-const activities = ref(['Coding', 'Reading', 'Training']);
+const activities = ref(generateActivities());
 
 function goTo(page) {
     currentPage.value = page;
@@ -26,11 +30,13 @@ function deleteActivity(activity) {
     activities.value.splice(activities.value.indexOf(activity), 1);
 }
 
-function createActivity(activity) {
-    activities.value.push(activity)
+function createActivity(name) {
+    activities.value.push({
+        name: name,
+        id: id(),
+        secondsToComplete: 0
+    });
 }
-
-
 </script>
 
 <template>
@@ -40,20 +46,16 @@ function createActivity(activity) {
         <TheTimeline
             v-show="currentPage === PAGE_TIMELINE"
             :timeline-items="timelineItems"
-            :activity-select-options="activitySelectOptions"
-        />
+            :activity-select-options="activitySelectOptions" />
         <TheActivities
             v-show="currentPage === PAGE_ACTIVITIES"
             :activities="activities"
             @delete-activity="deleteActivity"
-            @create-activity="createActivity"
-        />
+            @create-activity="createActivity" />
         <TheProgress v-show="currentPage === PAGE_PROGRESS" />
     </main>
 
     <TheNav :current-page="currentPage" @navigate="goTo($event)" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
