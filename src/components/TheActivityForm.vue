@@ -3,14 +3,20 @@
 import BaseButton from './BaseButton.vue';
 import { PlusIcon } from '@heroicons/vue/24/outline/index.js';
 import { isActivityValid } from '../validators.js';
-import { ref } from 'vue';
+import { nextTick, ref } from 'vue';
 
 
 const activity = ref('');
 
 function submit() {
     emit('submit', activity.value);
+
     activity.value = '';
+
+    nextTick(() => {
+        window.scroll(0, document.body.scrollHeight);
+    })
+
 }
 
 
