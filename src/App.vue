@@ -11,7 +11,6 @@ import {
     normalizePageHash,
     generateActivitySelectOptions,
     generateActivities,
-    id
 } from './functions.js';
 
 const currentPage = ref(normalizePageHash());
@@ -30,12 +29,8 @@ function deleteActivity(activity) {
     activities.value.splice(activities.value.indexOf(activity), 1);
 }
 
-function createActivity(name) {
-    activities.value.push({
-        name: name,
-        id: id(),
-        secondsToComplete: 0
-    });
+function createActivity(activity) {
+    activities.value.push(activity);
 }
 </script>
 
