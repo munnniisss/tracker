@@ -4,7 +4,7 @@ import BaseButton from './BaseButton.vue';
 import { XMarkIcon } from '@heroicons/vue/24/outline/index.js';
 import { isNumberOrNull, isUndefinedOrNull, validateSelectOptions } from '../validators.js';
 import { computed } from 'vue';
-import {BUTTON_TYPE_NEUTRAL} from "../constants.js"
+import { BUTTON_TYPE_NEUTRAL } from '../constants.js';
 
 
 const props = defineProps(
@@ -25,13 +25,13 @@ const props = defineProps(
 const emits = defineEmits({
     select: isNumberOrNull
 
-})
+});
 
 const isNotSelected = computed(
     () => {
-        return isUndefinedOrNull(props.selected)
+        return isUndefinedOrNull(props.selected);
     }
-)
+);
 
 </script>
 
