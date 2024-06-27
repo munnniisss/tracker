@@ -5,9 +5,10 @@
   "proseWrap": "always",
   "tabWidth": 4,
   "requireConfig": false,
-  "useTabs": false,
-  "trailingComma": "none",
+  "useTabs": true,
+  "trailingComma": "all",
   "bracketSpacing": true,
   "bracketSameLine": true,
-  "semi": true
+  "semi": true,
+  "vueIndentScriptAndStyle": false
 }
